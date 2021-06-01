@@ -1,0 +1,93 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# iCARE
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of iCARE is to ...
+
+## Installation
+
+You can install the development version of iCARE from here:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("kosirurska/iCARE")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(iCARE)
+library(tidyverse)
+```
+
+
+
+```{r}
+iCARE
+```
+
+
+
+### Plots
+
+```{r}
+## An example:
+plot_time_trend(data = iCARE,
+                variables = c(impacvd_sq003, impacvd_sq001, impacvd_sq002),
+                filter_value = 1,
+                time_variable = month, # test out for month if you wish
+                var_names = c("impacvd_sq003" = "Depression",
+                              "impacvd_sq001" = "Anxiety",
+                              "impacvd_sq002" = "Loneliness"),
+                max_value = 25,
+                title = "Trend over waves of survey",
+                return = "plot")
+
+```
+
+
+
+```{r}
+## Example pie -Ill change the name of the function :)
+plot_pie_chart(data = iCARE,
+               variable = sex,
+               filter_response=c(1:2), # if you change to c(1:3) you include other
+               title = "Sex distribution",
+               labels = c("Male", "Female"),
+               number_font_size = 6,
+               return = "plot")
+```
+
+### Inspect missingness
+
+```{r}
+## EXAMPLE
+inspect_missing(iCARE, min_value = 0.95)
+```
+
+
+```{r}
+## if you want it filtered eg for wave 8
+inspect_missing(iCARE, 
+                filter_var = "wave", 
+                filter_value = 8)
+```
+

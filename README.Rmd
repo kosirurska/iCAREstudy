@@ -13,20 +13,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-# iCARE
+# iCAREstudy
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of iCARE is to ...
+The goal of iCAREstudy is to ...
 
 ## Installation
 
-You can install the development version of iCARE from here:
+You can install the development version of iCAREstudy from here:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("kosirurska/iCARE")
+devtools::install_github("kosirurska/iCAREstudy")
 ```
 
 ## Example
@@ -34,7 +34,7 @@ devtools::install_github("kosirurska/iCARE")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(iCARE)
+library(iCAREstudy)
 library(tidyverse)
 ```
 

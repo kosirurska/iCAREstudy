@@ -1,4 +1,4 @@
-Package: iCARE
+Package: iCAREstudy
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.1
 Authors@R: 
@@ -10,6 +10,8 @@ Authors@R:
 Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
+URL: https://kosirurska.github.io/iCAREstudy/
+BugReports: https://github.com/kosirurska/iCAREstudy/issues
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1

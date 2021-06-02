@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of iCAREstudy is to ...
+The goal of iCAREstudy package is to simplify and standardize the descriptive data analysis and outputs for the iCARE Study from Montreal Behavioural Medicine Centre (MBMC). You can read more about the overarching study at: www.iCareStudy.com.
 
 ## Installation
 
@@ -31,11 +31,17 @@ devtools::install_github("kosirurska/iCAREstudy")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+There are currently 3.5 functions available. Two are plotting functions that are commonly used to represent the trend in a variable over time, and a pie chart for showing proportions. 
+
+A unique feature of the plotting functions is that they allow the user to request the output to be a **plot** (as specified in the pkg with limited ability to manipulate the output e.g. color), or **data**, which summarizes the needed counts and proportions so that the user can develop their own graph using a different software.
+
+The data 
+
+The examples are based on a fabricated data set included in this package. The data contains the same variable names as the original study in order to help users orient themselves. The complete data dictionaries are available at: https://osf.io/v8xk5/.
 
 ```{r example}
 library(iCAREstudy)
-library(tidyverse)
+library(tidyverse) # for now the functions still require the user to load tidyverse
 ```
 
 
@@ -48,6 +54,10 @@ iCARE
 
 ### Plots
 
+#### Time trends
+
+Because the data come from an ongoing multiwave survey, plotting trends over time is of interest. This function allows you to specify several variables, which you want to explore - be it by month, or survey wave. The function allows for filtering of the response category.
+
 ```{r}
 ## An example:
 plot_time_trend(data = iCARE,
@@ -57,30 +67,36 @@ plot_time_trend(data = iCARE,
                 var_names = c("impacvd_sq003" = "Depression",
                               "impacvd_sq001" = "Anxiety",
                               "impacvd_sq002" = "Loneliness"),
-                max_value = 25,
+                max_value = 55,
                 title = "Trend over waves of survey",
                 return = "plot")
 
 ```
 
+#### Proportions
 
+Another visualisation that has been commonly used to offer insight into data to the wider public are pie charts. This function allows the user to plot a single variable and select which categories they want plotted.
 
 ```{r}
-## Example pie -Ill change the name of the function :)
+## Example pie
 plot_pie_chart(data = iCARE,
                variable = sex,
-               filter_response=c(1:2), # if you change to c(1:3) you include other
+               filter_response=c(1:2), # e.g. if you change to c(1:3) you include "Other"
                title = "Sex distribution",
                labels = c("Male", "Female"),
                number_font_size = 6,
                return = "plot")
 ```
 
+## DATA DESCRIPTIVES
+
 ### Inspect missingness
+
+Simple line allows the user to get the proportion of missingness for each variable. The user can filter for the variable of interest.
 
 ```{r}
 ## EXAMPLE
-inspect_missing(iCARE, min_value = 0.95)
+inspect_missing(iCARE)
 ```
 
 

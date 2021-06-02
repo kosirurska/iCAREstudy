@@ -1,6 +1,6 @@
 #' Plot pie chart
 #'
-#' @param data specify data file i.e. global_raw
+#' @param data specify data file
 #' @param variable specify variable you want in pie chart
 #' @param filter_response filter response options e.g. c(1:4) to get rid of other values - cleaner plot
 #' @param title specify title
@@ -30,6 +30,9 @@ plot_pie_chart <- function(data,
                            return = c("plot", "data")) {
 
   return <- match.arg(return)
+
+  data$month<-as.Date(data$startdate)
+  data$month<- factor(format(data$month,'%Y-%m'))
 
   data_temp <- data %>%
     dplyr::select({{variable}}) %>%
@@ -104,7 +107,7 @@ plot_pie_chart <- function(data,
 #' plot_time_trend(data = iCARE,
 #'                 variables = c(impacvd_sq003, impacvd_sq001, impacvd_sq002),
 #'                 filter_value = 1,
-#'                 time_variable = month, # test out for month if you wish
+#'                 time_variable = wave, # test out for month if you wish
 #'                 var_names = c("impacvd_sq003" = "Depression",
 #'                               "impacvd_sq001" = "Anxiety",
 #'                               "impacvd_sq002" = "Loneliness"),

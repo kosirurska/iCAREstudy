@@ -71,7 +71,7 @@
 <a href="#icarestudy" class="anchor"></a>iCAREstudy</h1></div>
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of iCAREstudy is to …</p>
+<p>The goal of iCAREstudy package is to simplify and standardize the descriptive data analysis and outputs for the iCARE Study from Montreal Behavioural Medicine Centre (MBMC). You can read more about the overarching study at: www.iCareStudy.com.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -83,10 +83,13 @@
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<p>There are currently 3.5 functions available. Two are plotting functions that are commonly used to represent the trend in a variable over time, and a pie chart for showing proportions.</p>
+<p>A unique feature of the plotting functions is that they allow the user to request the output to be a <strong>plot</strong> (as specified in the pkg with limited ability to manipulate the output e.g. color), or <strong>data</strong>, which summarizes the needed counts and proportions so that the user can develop their own graph using a different software.</p>
+<p>The data</p>
+<p>The examples are based on a fabricated data set included in this package. The data contains the same variable names as the original study in order to help users orient themselves. The complete data dictionaries are available at: <a href="https://osf.io/v8xk5/" class="uri">https://osf.io/v8xk5/</a>.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://kosirurska.github.io/iCAREstudy/">iCAREstudy</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span> <span class="co"># for now the functions still require the user to load tidyverse</span>
 <span class="co">#&gt; ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</span>
 <span class="co">#&gt; ✓ ggplot2 3.3.3     ✓ purrr   0.3.4</span>
 <span class="co">#&gt; ✓ tibble  3.1.0     ✓ dplyr   1.0.5</span>
@@ -97,54 +100,31 @@
 <span class="co">#&gt; x dplyr::lag()    masks stats::lag()</span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">iCARE</span>
-<span class="co">#&gt; # A tibble: 1,400 x 239</span>
-<span class="co">#&gt;    startdate           startlanguage   sex age_yrs   edu concern_sq001</span>
-<span class="co">#&gt;    &lt;dttm&gt;              &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 2020-04-27 19:42:31 en                2      39    NA            NA</span>
-<span class="co">#&gt;  2 2020-04-30 11:50:06 fr                2      34     4             2</span>
-<span class="co">#&gt;  3 2020-04-02 23:17:04 en               NA      NA    NA            NA</span>
-<span class="co">#&gt;  4 2020-04-09 14:40:06 fr                1      58     2             1</span>
-<span class="co">#&gt;  5 2020-04-17 08:10:22 es                2      40     4             1</span>
-<span class="co">#&gt;  6 2020-03-30 21:36:57 en               NA      NA    NA            NA</span>
-<span class="co">#&gt;  7 2020-04-05 22:48:52 en                2      57    NA            NA</span>
-<span class="co">#&gt;  8 2020-04-02 03:53:16 it                1      22     2             2</span>
-<span class="co">#&gt;  9 2020-05-04 18:12:30 en                2      59     4             2</span>
-<span class="co">#&gt; 10 2020-04-15 14:36:58 fr                2      61     3             3</span>
-<span class="co">#&gt; # … with 1,390 more rows, and 233 more variables: concern_sq002 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   concern_sq004 &lt;dbl&gt;, concern_sq006 &lt;dbl&gt;, impacvd_sq001 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   impacvd_sq002 &lt;dbl&gt;, impacvd_sq003 &lt;dbl&gt;, impacvd_sq004 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   impacvd_sq023 &lt;lgl&gt;, impacvd_sq006 &lt;dbl&gt;, impacvd_sq011 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   impacvd_sq012 &lt;dbl&gt;, impacvd_sq022 &lt;dbl&gt;, impacvd_sq013 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   impacvd_sq014 &lt;dbl&gt;, impacvd_sq015 &lt;dbl&gt;, impacvd_sq020 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   impacvd_sq021 &lt;dbl&gt;, hebehch_sq001 &lt;dbl&gt;, hebehch_sq002 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   hebehch_sq003 &lt;dbl&gt;, hebehch_sq004 &lt;dbl&gt;, hebehch_sq005 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   hebehch_sq006 &lt;dbl&gt;, bodweigt &lt;lgl&gt;, qualife &lt;dbl&gt;, trustinf_sq001 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   trustinf_sq002 &lt;dbl&gt;, trustinf_sq003 &lt;dbl&gt;, trustinf_sq004 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   trustinf_sq005 &lt;dbl&gt;, trustinf_sq006 &lt;dbl&gt;, trustinf_sq007 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   trustinf_sq008 &lt;dbl&gt;, trustinf_sq009 &lt;dbl&gt;, tinfoso_sq011 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   tinfoso_sq012 &lt;dbl&gt;, tinfoso_sq013 &lt;dbl&gt;, tinfoso_sq014 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   tinfoso_sq015 &lt;dbl&gt;, tinfoso_sq016 &lt;dbl&gt;, cvdinf &lt;dbl&gt;, cvdrisk &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   cvdtest &lt;dbl&gt;, reastest_sq001 &lt;dbl&gt;, reastest_sq002 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   reastest_sq003 &lt;dbl&gt;, reastest_sq004 &lt;dbl&gt;, reastest_sq005 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   reastest_sq007 &lt;dbl&gt;, reastest_sq006 &lt;dbl&gt;, reastest_other &lt;chr&gt;,</span>
-<span class="co">#&gt; #   testres &lt;dbl&gt;, govcontr &lt;dbl&gt;, usecontr &lt;dbl&gt;, ifuscont &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   motcontr_sq001 &lt;dbl&gt;, motcontr_sq002 &lt;dbl&gt;, motcontr_sq003 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   motcontr_sq004 &lt;dbl&gt;, stcursch &lt;dbl&gt;, stmeas &lt;dbl&gt;, stimpsch_sq001 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   stimpsch_sq002 &lt;dbl&gt;, stimpsch_sq003 &lt;dbl&gt;, stimpsch_sq004 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   stimpsch_sq005 &lt;dbl&gt;, stimpsch_sq006 &lt;dbl&gt;, stimpsch_sq007 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   stimpsch_sq008 &lt;dbl&gt;, stimpsch_sq009 &lt;dbl&gt;, stcvdsch &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   stmimp_sq001 &lt;dbl&gt;, stmimp_sq002 &lt;dbl&gt;, stmimp_sq003 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   stmimp_sq004 &lt;dbl&gt;, stmimp_sq005 &lt;dbl&gt;, stmimp_sq006 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   stmimp_sq007 &lt;dbl&gt;, stmimp_sq008 &lt;dbl&gt;, stmimp_sq009 &lt;dbl&gt;, pacursch &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   pameas &lt;dbl&gt;, paimpsch_sq001 &lt;dbl&gt;, paimpsch_sq002 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   paimpsch_sq003 &lt;dbl&gt;, paimpsch_sq004 &lt;dbl&gt;, pamimp_sq001 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   pamimp_sq002 &lt;dbl&gt;, pamimp_sq003 &lt;dbl&gt;, pamimp_sq004 &lt;dbl&gt;, pascwork &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   hecond_sq001 &lt;dbl&gt;, hecond_sq002 &lt;dbl&gt;, hecond_sq003 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   hecond_sq004 &lt;dbl&gt;, hecond_sq005 &lt;dbl&gt;, hecond_sq006 &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   hecond_sq007 &lt;dbl&gt;, hecond_sq010 &lt;dbl&gt;, hecond_sq008 &lt;dbl&gt;, …</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 2,000 x 19</span>
+<span class="co">#&gt;    startdate   wave startlanguage   sex age_yrs   edu concern_sq001</span>
+<span class="co">#&gt;    &lt;date&gt;     &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 2021-03-01     1 it                1      36     3             1</span>
+<span class="co">#&gt;  2 2020-04-01     1 fr                1      85     3             3</span>
+<span class="co">#&gt;  3 2020-07-01     6 es                1      41     2             2</span>
+<span class="co">#&gt;  4 2020-04-01     1 de                1      76     5             2</span>
+<span class="co">#&gt;  5 2020-06-01     1 it                1      58     2             2</span>
+<span class="co">#&gt;  6 2020-12-01     2 en                2      37     3            NA</span>
+<span class="co">#&gt;  7 2020-03-01     2 en                1      51     2             2</span>
+<span class="co">#&gt;  8 2020-10-01     3 en                1      59     4             1</span>
+<span class="co">#&gt;  9 2020-06-01     1 es                3      46     4             2</span>
+<span class="co">#&gt; 10 2020-10-01     1 it                1      40     4             1</span>
+<span class="co">#&gt; # … with 1,990 more rows, and 12 more variables: concern_sq002 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   concern_sq003 &lt;dbl&gt;, concern_sq004 &lt;dbl&gt;, concern_sq005 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   impacvd_sq001 &lt;dbl&gt;, impacvd_sq002 &lt;dbl&gt;, impacvd_sq003 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   impacvd_sq004 &lt;dbl&gt;, hecond_sq001 &lt;dbl&gt;, hecond_sq002 &lt;dbl&gt;,</span>
+<span class="co">#&gt; #   hecond_sq003 &lt;dbl&gt;, month &lt;chr&gt;</span></code></pre></div>
 <div id="plots" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plots" class="anchor"></a>Plots</h3>
+<div id="time-trends" class="section level4">
+<h4 class="hasAnchor">
+<a href="#time-trends" class="anchor"></a>Time trends</h4>
+<p>Because the data come from an ongoing multiwave survey, plotting trends over time is of interest. This function allows you to specify several variables, which you want to explore - be it by month, or survey wave. The function allows for filtering of the response category.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## An example:</span>
 <span class="fu"><a href="reference/plot_time_trend.html">plot_time_trend</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">iCARE</span>,
@@ -154,167 +134,53 @@
                 var_names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"impacvd_sq003"</span> <span class="op">=</span> <span class="st">"Depression"</span>,
                               <span class="st">"impacvd_sq001"</span> <span class="op">=</span> <span class="st">"Anxiety"</span>,
                               <span class="st">"impacvd_sq002"</span> <span class="op">=</span> <span class="st">"Loneliness"</span><span class="op">)</span>,
-                max_value <span class="op">=</span> <span class="fl">25</span>,
+                max_value <span class="op">=</span> <span class="fl">55</span>,
                 title <span class="op">=</span> <span class="st">"Trend over waves of survey"</span>,
-                return <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Removed 1 rows containing missing values (position_stack).</span></code></pre></div>
+                return <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
+</div>
+<div id="proportions" class="section level4">
+<h4 class="hasAnchor">
+<a href="#proportions" class="anchor"></a>Proportions</h4>
+<p>Another visualisation that has been commonly used to offer insight into data to the wider public are pie charts. This function allows the user to plot a single variable and select which categories they want plotted.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co">## Example pie -Ill change the name of the function :)</span>
+<code class="sourceCode R"><span class="co">## Example pie</span>
 <span class="fu"><a href="reference/plot_pie_chart.html">plot_pie_chart</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">iCARE</span>,
                variable <span class="op">=</span> <span class="va">sex</span>,
-               filter_response<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>, <span class="co"># if you change to c(1:3) you include other</span>
+               filter_response<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span>, <span class="co"># e.g. if you change to c(1:3) you include "Other"</span>
                title <span class="op">=</span> <span class="st">"Sex distribution"</span>,
                labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Male"</span>, <span class="st">"Female"</span><span class="op">)</span>,
                number_font_size <span class="op">=</span> <span class="fl">6</span>,
                return <span class="op">=</span> <span class="st">"plot"</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-4-1.png" width="100%"></p>
 </div>
+</div>
+</div>
+<div id="data-descriptives" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-descriptives" class="anchor"></a>DATA DESCRIPTIVES</h2>
 <div id="inspect-missingness" class="section level3">
 <h3 class="hasAnchor">
 <a href="#inspect-missingness" class="anchor"></a>Inspect missingness</h3>
+<p>Simple line allows the user to get the proportion of missingness for each variable. The user can filter for the variable of interest.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## EXAMPLE</span>
-<span class="fu"><a href="reference/inspect_missing.html">inspect_missing</a></span><span class="op">(</span><span class="va">iCARE</span>, min_value <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
-<span class="co">#&gt; Showing proportion of missing values in descending order above the level of: 0.95.</span>
-<span class="co">#&gt;  infoica_other   ukterr_other       clspcode       clsredir       stcvdsch </span>
-<span class="co">#&gt;           1.00           1.00           1.00           1.00           1.00 </span>
-<span class="co">#&gt;       pregweek       pregconc         ukterr       ircounty       bodweigt </span>
-<span class="co">#&gt;           1.00           1.00           0.99           0.99           0.99 </span>
-<span class="co">#&gt;       punemins  impacvd_sq023 stimpsch_sq001 stimpsch_sq002 stimpsch_sq003 </span>
-<span class="co">#&gt;           0.99           0.99           0.98           0.98           0.98 </span>
-<span class="co">#&gt; stimpsch_sq004 stimpsch_sq005 stimpsch_sq006 stimpsch_sq007 stimpsch_sq008 </span>
-<span class="co">#&gt;           0.98           0.98           0.98           0.98           0.98 </span>
-<span class="co">#&gt; stimpsch_sq009   pamimp_sq001   pamimp_sq002   pamimp_sq003   pamimp_sq004 </span>
-<span class="co">#&gt;           0.98           0.98           0.98           0.98           0.98 </span>
-<span class="co">#&gt;   jobdes_other reastest_other   stmimp_sq001   stmimp_sq002   stmimp_sq003 </span>
-<span class="co">#&gt;           0.97           0.96           0.96           0.96           0.96 </span>
-<span class="co">#&gt;   stmimp_sq004   stmimp_sq005   stmimp_sq006   stmimp_sq007   stmimp_sq008 </span>
-<span class="co">#&gt;           0.96           0.96           0.96           0.96           0.96 </span>
-<span class="co">#&gt;   stmimp_sq009 paimpsch_sq001 paimpsch_sq002 paimpsch_sq003 paimpsch_sq004 </span>
-<span class="co">#&gt;           0.96           0.96           0.96           0.96           0.96</span></code></pre></div>
+<span class="fu"><a href="reference/inspect_missing.html">inspect_missing</a></span><span class="op">(</span><span class="va">iCARE</span><span class="op">)</span>
+<span class="co">#&gt; Showing proportion of missing values in descending order above the level of: 0.</span>
+<span class="co">#&gt; concern_sq004 concern_sq003 concern_sq005 concern_sq001 concern_sq002 </span>
+<span class="co">#&gt;          0.12          0.12          0.11          0.11          0.11 </span>
+<span class="co">#&gt;  hecond_sq003  hecond_sq001  hecond_sq002           edu       age_yrs </span>
+<span class="co">#&gt;          0.10          0.10          0.09          0.09          0.02</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co">## if you want it filtered eg for wave 8</span>
 <span class="fu"><a href="reference/inspect_missing.html">inspect_missing</a></span><span class="op">(</span><span class="va">iCARE</span>, 
                 filter_var <span class="op">=</span> <span class="st">"wave"</span>, 
                 filter_value <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>
 <span class="co">#&gt; Showing proportion of missing values in descending order above the level of: 0.</span>
-<span class="co">#&gt;    infoica_other     ukterr_other         clspcode         clsredir </span>
-<span class="co">#&gt;             1.00             1.00             1.00             1.00 </span>
-<span class="co">#&gt;         stcvdsch         pregweek         pregconc           ukterr </span>
-<span class="co">#&gt;             1.00             1.00             1.00             0.99 </span>
-<span class="co">#&gt;         ircounty         bodweigt         punemins    impacvd_sq023 </span>
-<span class="co">#&gt;             0.99             0.99             0.99             0.99 </span>
-<span class="co">#&gt;   stimpsch_sq001   stimpsch_sq002   stimpsch_sq003   stimpsch_sq004 </span>
-<span class="co">#&gt;             0.98             0.98             0.98             0.98 </span>
-<span class="co">#&gt;   stimpsch_sq005   stimpsch_sq006   stimpsch_sq007   stimpsch_sq008 </span>
-<span class="co">#&gt;             0.98             0.98             0.98             0.98 </span>
-<span class="co">#&gt;   stimpsch_sq009     pamimp_sq001     pamimp_sq002     pamimp_sq003 </span>
-<span class="co">#&gt;             0.98             0.98             0.98             0.98 </span>
-<span class="co">#&gt;     pamimp_sq004     jobdes_other   reastest_other     stmimp_sq001 </span>
-<span class="co">#&gt;             0.98             0.97             0.96             0.96 </span>
-<span class="co">#&gt;     stmimp_sq002     stmimp_sq003     stmimp_sq004     stmimp_sq005 </span>
-<span class="co">#&gt;             0.96             0.96             0.96             0.96 </span>
-<span class="co">#&gt;     stmimp_sq006     stmimp_sq007     stmimp_sq008     stmimp_sq009 </span>
-<span class="co">#&gt;             0.96             0.96             0.96             0.96 </span>
-<span class="co">#&gt;   paimpsch_sq001   paimpsch_sq002   paimpsch_sq003   paimpsch_sq004 </span>
-<span class="co">#&gt;             0.96             0.96             0.96             0.96 </span>
-<span class="co">#&gt;         pascwork         workhome         stcursch           stmeas </span>
-<span class="co">#&gt;             0.94             0.94             0.94             0.94 </span>
-<span class="co">#&gt;         pacursch           pameas          liveinf         cunemins </span>
-<span class="co">#&gt;             0.94             0.94             0.90             0.90 </span>
-<span class="co">#&gt;    infoica_sq001    infoica_sq002    infoica_sq003    infoica_sq004 </span>
-<span class="co">#&gt;             0.89             0.89             0.89             0.89 </span>
-<span class="co">#&gt;    infoica_sq005    infoica_sq006    infoica_sq007    infoica_sq008 </span>
-<span class="co">#&gt;             0.89             0.89             0.89             0.89 </span>
-<span class="co">#&gt;    infoica_sq009    infoica_sq010    infoica_sq011    infoica_sq012 </span>
-<span class="co">#&gt;             0.89             0.89             0.89             0.89 </span>
-<span class="co">#&gt;         hcworker   reastest_sq007    qc_adm_region         homeeasy </span>
-<span class="co">#&gt;             0.88             0.88             0.87             0.87 </span>
-<span class="co">#&gt;         ifuscont          testres     can_adm_city   reastest_sq001 </span>
-<span class="co">#&gt;             0.86             0.85             0.85             0.83 </span>
-<span class="co">#&gt;   reastest_sq002   reastest_sq003   reastest_sq004   reastest_sq005 </span>
-<span class="co">#&gt;             0.83             0.83             0.83             0.83 </span>
-<span class="co">#&gt;   reastest_sq006          canprov    impacvd_sq016   tgovmeas_sq007 </span>
-<span class="co">#&gt;             0.83             0.82             0.81             0.80 </span>
-<span class="co">#&gt;          workrem            sickl         usecontr canada_provinces </span>
-<span class="co">#&gt;             0.78             0.78             0.75             0.73 </span>
-<span class="co">#&gt;   motcontr_sq001   motcontr_sq002   motcontr_sq003   motcontr_sq004 </span>
-<span class="co">#&gt;             0.73             0.73             0.73             0.73 </span>
-<span class="co">#&gt;     hecond_sq011    tinfoso_sq001    tinfoso_sq002    tinfoso_sq003 </span>
-<span class="co">#&gt;             0.72             0.72             0.72             0.72 </span>
-<span class="co">#&gt;    tinfoso_sq004    tinfoso_sq005    tinfoso_sq006    tinfoso_sq007 </span>
-<span class="co">#&gt;             0.72             0.72             0.72             0.72 </span>
-<span class="co">#&gt;    tinfoso_sq008    tinfoso_sq009    tinfoso_sq010    impacvd_sq007 </span>
-<span class="co">#&gt;             0.72             0.72             0.72             0.72 </span>
-<span class="co">#&gt;    impacvd_sq008    impacvd_sq009    impacvd_sq010    impacvd_sq018 </span>
-<span class="co">#&gt;             0.72             0.72             0.72             0.72 </span>
-<span class="co">#&gt;    impacvd_sq019    concern_sq015           whours    hebehch_sq001 </span>
-<span class="co">#&gt;             0.72             0.71             0.71             0.70 </span>
-<span class="co">#&gt;    hebehch_sq002    hebehch_sq003    hebehch_sq004    hebehch_sq005 </span>
-<span class="co">#&gt;             0.70             0.70             0.70             0.70 </span>
-<span class="co">#&gt;    hebehch_sq006   tgovmeas_sq005   tgovmeas_sq006          cvdrisk </span>
-<span class="co">#&gt;             0.70             0.70             0.70             0.70 </span>
-<span class="co">#&gt;   trustinf_sq008    tinfoso_sq011    tinfoso_sq012    tinfoso_sq013 </span>
-<span class="co">#&gt;             0.70             0.70             0.70             0.70 </span>
-<span class="co">#&gt;    tinfoso_sq014    tinfoso_sq015    tinfoso_sq016   trustinf_sq002 </span>
-<span class="co">#&gt;             0.70             0.70             0.70             0.70 </span>
-<span class="co">#&gt;   trustinf_sq004   trustinf_sq005   trustinf_sq007   trustinf_sq009 </span>
-<span class="co">#&gt;             0.70             0.70             0.70             0.70 </span>
-<span class="co">#&gt;   trustinf_sq001   trustinf_sq003   trustinf_sq006    impacvd_sq022 </span>
-<span class="co">#&gt;             0.69             0.69             0.69             0.69 </span>
-<span class="co">#&gt;    actfreq_sq006    actfreq_sq012    actfreq_sq016    actfreq_sq018 </span>
-<span class="co">#&gt;             0.69             0.69             0.69             0.69 </span>
-<span class="co">#&gt;    actfreq_sq019    actfreq_sq024     recgov_sq012     recgov_sq006 </span>
-<span class="co">#&gt;             0.69             0.68             0.66             0.66 </span>
-<span class="co">#&gt;     recgov_sq016     recgov_sq018     recgov_sq019     recgov_sq024 </span>
-<span class="co">#&gt;             0.66             0.66             0.66             0.66 </span>
-<span class="co">#&gt;           curemp      hebeh_sq001      hebeh_sq002      hebeh_sq003 </span>
-<span class="co">#&gt;             0.64             0.64             0.64             0.64 </span>
-<span class="co">#&gt;             smok             ecig           menthe            phyhe </span>
-<span class="co">#&gt;             0.63             0.63             0.63             0.63 </span>
-<span class="co">#&gt;    concern_sq003    concern_sq005         govcontr            hwork </span>
-<span class="co">#&gt;             0.62             0.62             0.60             0.59 </span>
-<span class="co">#&gt;    actfreq_sq004    actfreq_sq005    actfreq_sq013    actfreq_sq017 </span>
-<span class="co">#&gt;             0.58             0.58             0.58             0.58 </span>
-<span class="co">#&gt;    actfreq_sq021    actfreq_sq022           jobdes     recgov_sq017 </span>
-<span class="co">#&gt;             0.58             0.58             0.57             0.54 </span>
-<span class="co">#&gt;     recgov_sq005     recgov_sq013     recgov_sq021             preg </span>
-<span class="co">#&gt;             0.54             0.54             0.54             0.54 </span>
-<span class="co">#&gt;     recgov_sq004     recgov_sq022    impacvd_sq005    impacvd_sq017 </span>
-<span class="co">#&gt;             0.54             0.54             0.52             0.52 </span>
-<span class="co">#&gt;             ethn           region           medins             city </span>
-<span class="co">#&gt;             0.47             0.47             0.44             0.44 </span>
-<span class="co">#&gt;           perinf           cvdinf     hecond_sq010          qualife </span>
-<span class="co">#&gt;             0.42             0.42             0.42             0.41 </span>
-<span class="co">#&gt;    impacvd_sq001    impacvd_sq002    impacvd_sq003    impacvd_sq004 </span>
-<span class="co">#&gt;             0.41             0.41             0.41             0.41 </span>
-<span class="co">#&gt;    impacvd_sq006    impacvd_sq011    impacvd_sq012    impacvd_sq013 </span>
-<span class="co">#&gt;             0.41             0.41             0.41             0.41 </span>
-<span class="co">#&gt;    impacvd_sq014    impacvd_sq015    impacvd_sq020    impacvd_sq021 </span>
-<span class="co">#&gt;             0.41             0.41             0.41             0.41 </span>
-<span class="co">#&gt;       employstat    actfreq_sq002  submitdate_part  submittime_part </span>
-<span class="co">#&gt;             0.39             0.36             0.35             0.35 </span>
-<span class="co">#&gt;            hoinc             area          cvdtest     hecond_sq001 </span>
-<span class="co">#&gt;             0.34             0.34             0.33             0.33 </span>
-<span class="co">#&gt;     hecond_sq002     hecond_sq003     hecond_sq004     hecond_sq005 </span>
-<span class="co">#&gt;             0.33             0.33             0.33             0.33 </span>
-<span class="co">#&gt;     hecond_sq006     hecond_sq007     hecond_sq008     hecond_sq009 </span>
-<span class="co">#&gt;             0.33             0.33             0.33             0.33 </span>
-<span class="co">#&gt;              edu     recgov_sq002    concern_sq004    concern_sq006 </span>
-<span class="co">#&gt;             0.32             0.31             0.31             0.31 </span>
-<span class="co">#&gt;    concern_sq001    concern_sq002         language   emplstat_sq001 </span>
-<span class="co">#&gt;             0.30             0.30             0.29             0.27 </span>
-<span class="co">#&gt;   emplstat_sq002   emplstat_sq003   emplstat_sq004   emplstat_sq005 </span>
-<span class="co">#&gt;             0.27             0.27             0.27             0.27 </span>
-<span class="co">#&gt;   emplstat_sq006   emplstat_sq007   emplstat_sq008     recgov_sq008 </span>
-<span class="co">#&gt;             0.27             0.27             0.27             0.19 </span>
-<span class="co">#&gt;      recgov_sq09     recgov_sq007     recgov_sq001     recgov_sq003 </span>
-<span class="co">#&gt;             0.19             0.19             0.19             0.19 </span>
-<span class="co">#&gt;          age_yrs           age_gp          age_gpr          age_gpk </span>
-<span class="co">#&gt;             0.15             0.15             0.15             0.15 </span>
-<span class="co">#&gt;              sex      country_trl      country_iso </span>
-<span class="co">#&gt;             0.14             0.13             0.13</span></code></pre></div>
+<span class="co">#&gt; concern_sq004 concern_sq003 concern_sq005 concern_sq001 concern_sq002 </span>
+<span class="co">#&gt;          0.12          0.12          0.11          0.11          0.11 </span>
+<span class="co">#&gt;  hecond_sq003  hecond_sq001  hecond_sq002           edu       age_yrs </span>
+<span class="co">#&gt;          0.10          0.10          0.09          0.09          0.02</span></code></pre></div>
 </div>
 </div>
 </div>

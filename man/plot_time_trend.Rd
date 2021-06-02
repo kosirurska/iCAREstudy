@@ -51,7 +51,7 @@ Plot time trend
 plot_time_trend(data = iCARE,
                 variables = c(impacvd_sq003, impacvd_sq001, impacvd_sq002),
                 filter_value = 1,
-                time_variable = month, # test out for month if you wish
+                time_variable = wave, # test out for month if you wish
                 var_names = c("impacvd_sq003" = "Depression",
                               "impacvd_sq001" = "Anxiety",
                               "impacvd_sq002" = "Loneliness"),

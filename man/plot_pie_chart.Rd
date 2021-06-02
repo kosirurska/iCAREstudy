@@ -16,7 +16,7 @@ plot_pie_chart(
 )
 }
 \arguments{
-\item{data}{specify data file i.e. global_raw}
+\item{data}{specify data file}
 
 \item{variable}{specify variable you want in pie chart}
 
